@@ -1,9 +1,33 @@
-<div>
-    <h1 class="grey">{{componentName}}</h1>
-    <input class="form control" type="text" (input)="getItem($event)">
-    <button [disabled]='btnDisabled' class="btn btn-success w= 100">Add to cart </button>
-    <ul class=" list-group">
-        <li class="list-group-item">Product 1</li>
-    </ul>
 
-</div> 
+<div>
+    <h1 class="lightblue">{{componentName}}</h1>
+    <!-- Event binding & Data Binding -->
+    <!-- <input class="form control" type="text" 
+    (input)="getItem($event)" 
+    [value] = "item"> -->
+
+    <!-- Above Binding using Angular's Directives ngModel -->
+    <input class="form control" type="text" [(ngModel)]="item" (input)="($event)" [value]="item">
+    <!-- Directive is used to change DOM-->
+    <button [disabled]='btnDisabled' (click)="addToCart()" class="btn btn-success w= 100">Add to cart </button>
+
+
+    <!--Directive- ngIf -> for conditional rendering -->
+    <!-- Estrick(*) means structural Directive which can change code structure-->
+    <!-- <p *ngIf="!cart.length" class = "alert alert-danger">Cart is Empty</p> -->
+    <ul *ngIf="cart.length; else alert" class=" list-group">
+        <li class="list-group-item" 
+        *ngFor=" let item of cart; let i=index"
+         [ngStyle]="{'background':'lightblue'}"
+         [ngClass]="{'list-group-item-danger':'true'}">
+            <!-- ngFor ->rendering a collection -->
+            <!-- ngStyle -> for changing a inline style -->
+            <!-- ngClass-> for conditionally adding CSS classes -->
+            {{i+1}}.{{item.name |shorten}} {{item.time | date:'dd/MM'}}
+        </li>
+    </ul>
+    <ng-template #alert>
+        <p class="alert alert-danger">Cart is Empty</p>
+    </ng-template>
+
+</div>

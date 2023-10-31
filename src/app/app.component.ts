@@ -20,7 +20,7 @@ export class AppComponent {
     }, 5000);
 
     setTimeout(() => {
-      observer.error('errorrr');
+      observer.error('errorr');
     }, 4000);
   });
 

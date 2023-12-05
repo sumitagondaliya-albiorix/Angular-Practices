@@ -6,7 +6,7 @@
         <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" formControlName="name">
-        <div *ngIf="userForm?.get('name')?.invalid && userForm?.get('name')?.touched" class="text-danger">
+        <div *ngIf="userForm?.get('name')?.invalid && userForm?.get('name')?.touched" class="text-danger" >
           Name is required.
         </div>
       </div>
@@ -55,7 +55,6 @@
           Please select a gender.
         </div>
       </div>
-  
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
